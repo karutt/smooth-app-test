@@ -142,16 +142,16 @@ Combine `useOptimistic` (for RSC) or `useMutation` with `onMutate` (for Query):
 // For Query-managed data
 const mutation = useMutation({
     mutationFn: serverAction,
-    onMutate: async (variables) => {
-        await qc.cancelQueries({ queryKey: ["key"] });
-        const prev = qc.getQueryData(["key"]);
-        qc.setQueryData(["key"], optimisticValue);
+    onMutate: async variables => {
+        await qc.cancelQueries({ queryKey: ['key'] });
+        const prev = qc.getQueryData(['key']);
+        qc.setQueryData(['key'], optimisticValue);
         return { prev };
     },
     onError: (err, vars, context) => {
-        if (context?.prev) qc.setQueryData(["key"], context.prev);
+        if (context?.prev) qc.setQueryData(['key'], context.prev);
     },
-    onSettled: () => qc.invalidateQueries({ queryKey: ["key"] }),
+    onSettled: () => qc.invalidateQueries({ queryKey: ['key'] }),
 });
 ```
 
