@@ -1,0 +1,8 @@
+runtime: nodejs20
+
+env:
+    NEXT_PUBLIC_APP_ENV: 'dev'
+
+secrets:
+    AUTH_SECRET:
+        secret: auth-secret
